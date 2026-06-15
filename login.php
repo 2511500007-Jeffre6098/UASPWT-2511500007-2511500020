@@ -29,7 +29,11 @@ session_start();
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
+<<<<<<< HEAD
         <p class="login-box-msg">Login Store
+=======
+        <p class="login-box-msg">Sign in to start your session
+>>>>>>> master
         </p>
         <form action="#" method="post">
           <div class="input-group mb-3">
@@ -73,7 +77,11 @@ session_start();
 </html>
 
 <?php
+<<<<<<< HEAD
 if (isset($_POST['username'])) {
+=======
+if (isset($_POST['login'])) {
+>>>>>>> master
 
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -84,6 +92,7 @@ if (isset($_POST['username'])) {
 
     } else {
 
+<<<<<<< HEAD
         $query = mysqli_query($conn,
             "SELECT * FROM user 
              WHERE username='$username' 
@@ -101,6 +110,19 @@ if (isset($_POST['username'])) {
             
 
         } else {
+=======
+        $userquery = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM user WHERE username='$username'" ));
+
+ 
+        if ($userquery) {
+
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
+
+                    header("location:index.php");
+
+                } else {
+>>>>>>> master
 
             echo '<div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert">×</button>
@@ -109,5 +131,14 @@ if (isset($_POST['username'])) {
                   </div>';
 
         }
+<<<<<<< HEAD
 
+=======
+ 
+            } 
+
+        } 
+
+    
+>>>>>>> master
 ?>
