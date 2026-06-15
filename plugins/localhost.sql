@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_pwd2025`
 --
-CREATE DATABASE IF NOT EXISTS `db_pwd2025` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `db_pwd2025` DEFAULT CHARACTER SET utf8mb4 ;
 USE `db_pwd2025`;
 
 -- --------------------------------------------------------
@@ -32,7 +32,7 @@ USE `db_pwd2025`;
 CREATE TABLE `tbl_biomhs` (
   `bid` int NOT NULL,
   `bnim` varchar(10) DEFAULT NULL,
-  `bnmlengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `bnmlengkap` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
   `btmptlhr` varchar(100) DEFAULT NULL,
   `btgllhr` varchar(50) DEFAULT NULL,
   `bhobi` varchar(100) DEFAULT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `tbl_biomhs` (
   `bnmkakak` varchar(100) DEFAULT NULL,
   `bnmadik` varchar(100) DEFAULT NULL,
   `dcreated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `tbl_biomhs`
@@ -65,7 +65,7 @@ CREATE TABLE `tbl_tamu` (
   `cemail` varchar(100) DEFAULT NULL,
   `cpesan` text,
   `dcreated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `tbl_tamu`
@@ -109,12 +109,12 @@ ALTER TABLE `tbl_tamu`
 --
 -- Database: `db_pwdbio2026`
 --
-CREATE DATABASE IF NOT EXISTS `db_pwdbio2026` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `db_pwdbio2026` DEFAULT CHARACTER SET utf8mb4 ;
 USE `db_pwdbio2026`;
 --
 -- Database: `jadwalguru`
 --
-CREATE DATABASE IF NOT EXISTS `jadwalguru` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `jadwalguru` DEFAULT CHARACTER SET utf8mb4 ;
 USE `jadwalguru`;
 
 -- --------------------------------------------------------
@@ -127,7 +127,7 @@ CREATE TABLE `tabelmapel` (
   `Kd_mapel` varchar(5) NOT NULL,
   `Nm_mapel` varchar(35) DEFAULT NULL,
   `KKM` char(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 -- --------------------------------------------------------
 
@@ -140,7 +140,7 @@ CREATE TABLE `tabel_admin` (
   `Username` varchar(50) NOT NULL,
   `Nama_lengkap` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `tabel_admin`
@@ -164,7 +164,7 @@ CREATE TABLE `tabel_guru` (
   `Pend_terakhir` varchar(20) DEFAULT NULL,
   `Hp` int DEFAULT NULL,
   `alamat` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 -- --------------------------------------------------------
 
@@ -174,10 +174,10 @@ CREATE TABLE `tabel_guru` (
 
 CREATE TABLE `users` (
   `Id_user` int NOT NULL,
-  `Username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Role` enum('Admin','Guru','Siswa') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Username` varchar(50) CHARACTER SET utf8mb4  DEFAULT NULL,
+  `Password` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL,
+  `Role` enum('Admin','Guru','Siswa') CHARACTER SET utf8mb4  DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `users`
@@ -223,7 +223,7 @@ ALTER TABLE `users`
 --
 -- Database: `kuliah`
 --
-CREATE DATABASE IF NOT EXISTS `kuliah` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `kuliah` DEFAULT CHARACTER SET utf8mb4 ;
 USE `kuliah`;
 
 -- --------------------------------------------------------
@@ -236,7 +236,7 @@ CREATE TABLE `tabel_mhs` (
   `NIM` char(12) NOT NULL,
   `NAMA` varchar(100) NOT NULL,
   `ALAMAT` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `tabel_mhs`
@@ -258,7 +258,7 @@ CREATE TABLE `tbl_kuliah` (
   `KODE` varchar(100) NOT NULL,
   `KEL` varchar(6) NOT NULL,
   `NILAI` char(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `tbl_kuliah`
@@ -297,7 +297,7 @@ ALTER TABLE `tbl_kuliah`
 --
 -- Database: `test`
 --
-CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8mb4 ;
 USE `test`;
 
 -- --------------------------------------------------------
@@ -313,7 +313,7 @@ CREATE TABLE `mahasiswa` (
   `JURUSAN` varchar(6) NOT NULL,
   `JADWAL` varchar(6) DEFAULT NULL,
   `KELAS` varchar(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `mahasiswa`

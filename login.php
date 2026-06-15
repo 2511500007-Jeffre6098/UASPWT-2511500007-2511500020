@@ -29,11 +29,7 @@ session_start();
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-<<<<<<< HEAD
         <p class="login-box-msg">Login Store
-=======
-        <p class="login-box-msg">Sign in to start your session
->>>>>>> master
         </p>
         <form action="#" method="post">
           <div class="input-group mb-3">
@@ -77,68 +73,40 @@ session_start();
 </html>
 
 <?php
-<<<<<<< HEAD
 if (isset($_POST['username'])) {
-=======
-if (isset($_POST['login'])) {
->>>>>>> master
 
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     if (empty($username) || empty($password)) {
-
-        echo "Data Tidak Boleh kosong";
-
+      echo '<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                Data tidak boleh kosong
+              </div>';
     } else {
 
-<<<<<<< HEAD
-        $query = mysqli_query($conn,
-            "SELECT * FROM user 
-             WHERE username='$username' 
-             AND password='$password'"
-        );
-
+        $query = mysqli_query($koneksi, "SELECT * FROM user WHERE username='$username'");
         $userquery = mysqli_fetch_array($query);
 
-        
-
-                    header("location:index.php");
-
-                }
-
-            
-
-        } else {
-=======
-        $userquery = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM user WHERE username='$username'" ));
-
- 
-        if ($userquery) {
-
+        if ($userquery){
+          if ($userquery['password'] == $password) {
             $_SESSION['username'] = $username;
-            $_SESSION['password'] = $password;
-
-                    header("location:index.php");
-
-                } else {
->>>>>>> master
-
+            header("location:index.php");
+          } else {
             echo '<div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                    Login gagal
+                    Password Salah
                   </div>';
-
-        }
-<<<<<<< HEAD
-
-=======
- 
-            } 
-
-        } 
-
-    
->>>>>>> master
+          }
+        } else {
+          echo '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                  Login gagal
+                </div>';
+          }   
+    } 
+} 
 ?>

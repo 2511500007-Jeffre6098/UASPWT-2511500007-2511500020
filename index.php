@@ -87,7 +87,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $_SESSION['Username'] ?></a>
+          <a href="#" class="d-block"><?php echo $_SESSION['username'] ?></a>
         </div>
       </div>
 
@@ -118,9 +118,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="index.php?page=mapel" class="nav-link <?php echo ($page == 'mapel' || $page == 'edit_mapel' || $page == 'tambah_mapel') ? 'active' : '' ?>">
+                <a href="index.php?page=inventaris" class="nav-link <?php echo ($page == 'inventaris' || $page == 'edit_inventaris' || $page == 'tambah_inventaris') ? 'active' : '' ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Mata Pelajaran</p>
+                  <p>Inventaris</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -149,8 +149,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <li class="nav-item menu-open">
+          <li class="nav-item menu-open">
             <a href="" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -173,14 +172,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-            <a href="logout.php" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Logout
-                <span class="right badge badge-danger">New</span>
-              </p>
+          <li class="nav-item">
+            <a href="logout.php" class="nav-link" onmouseover="this.style.color='#0080ff'" onmouseout="this.style.color=''"">
+                <i class="nav-icon fas fa-th"></i>
+                <p>Logout</p>
             </a>
-          </li>
+        </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -218,31 +215,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <h5 class="card-title">Dashboard</h5>
 
                 <p class="card-text">
-                <?php 
-               if (isset($page)) {
-                    $page = $page;
-               } else {
-                    $page = "";
-               }
-                if ($page == ""){
-                    include "page/dashboard.php";
-               } elseif (!file_exists("page/$page.php")){
-                  echo "File Tidak Ditemukan";
-               } else { 
-                include "page/$page.php";
-               }
-               if ($page == "page/ganti_password.php"){
-                header("location:index.php");
-               }
-
-                ?>                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+                  <?php
+                    if (isset($_GET['page'])) {
+                      $page = $_GET['page'];
+                    } else {
+                      $page = "";
+                    }
+                    if ($page == "") {
+                      include "page/dashboard.php";
+                    } elseif (!file_exists("page/$page.php")) {
+                      echo "File tidak ditemukan";
+                    } else {
+                      include "page/$page.php";
+                    }
+                  ?>
+                </p>
+                
               </div>
             </div>
 
-            
+          </div>
+          <!-- /.col-md-6 -->
+
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -276,8 +280,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 </html>
 <?php
-} else {
-    echo"<meta http-equiv='refresh'content='0 url =login.php'>";
- }
-
- ?>
+  } else {
+    echo"<meta http-equiv='refresh' content='0; url=login.php'>";
+  }
+?>
