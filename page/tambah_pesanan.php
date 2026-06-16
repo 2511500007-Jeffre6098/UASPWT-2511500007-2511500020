@@ -94,11 +94,11 @@ if (isset($_POST['tambah'])) {
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="detail-pesanan">
                             <tr>
                                 <td>
                                     <select name="kd_barang" class="form-control" onchange="isiHarga(this)">
-                                        <option disabled selected>-- Pilih Barang --</option>
+                                        <option disabled selected value=''>-- Pilih Barang --</option>
                                         <?php
                                         $query = mysqli_query($koneksi, "SELECT * FROM barang");
                                         while ($b = mysqli_fetch_array($query)) {
@@ -146,6 +146,7 @@ if (isset($_POST['tambah'])) {
                         let container = document.getElementById('detail-pesanan');
                         let row = container.firstElementChild.cloneNode(true);
                         row.querySelectorAll('select').forEach(select => select.value = '');
+                        row.querySelectorAll('input').forEach(input => input.value = '');
                         container.appendChild(row);
                     }
 
