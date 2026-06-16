@@ -59,8 +59,8 @@ if (isset($_GET['action'])) {
                                 <td><?= $no; ?></td>
                                 <td><?= $result['kd_barang']; ?></td>
                                 <td><?= $result['nm_barang']; ?></td>
-                                <td><?= "Rp " . number_format($result['hrg_barang'], 0, ',', '.'); ?></td>
-                                <td><?= $result['ktg_barang']; ?></td>
+                                <td><?= "Rp " . number_format($result['harga_barang'], 0, ',', '.'); ?></td>
+                                <td><?= $result['kategori_barang']; ?></td>
                                 <td>
                                     <a href="index.php?page=barang&action=hapus&kd=<?= $result['kd_barang']; ?>">
                                         <span class="badge badge-danger">Hapus</span>

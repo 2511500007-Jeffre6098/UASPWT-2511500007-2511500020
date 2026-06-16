@@ -85,29 +85,31 @@ if (isset($_POST['tambah'])) {
                     <h5>Detail Pesanan</h5>
 
                     <table class="table table-bordered">
-                        <thead>
+                        <thead class="text-center">
                             <tr>
                                 <th>Nama Barang</th>
                                 <th>Harga</th>
                                 <th>Jumlah</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr>
                                 <td>
-                                    <select name="kd_barang[]" class="form-control">
-                                        <option disabled selected value="">-- Pilih Barang --</option>
+                                    <select name="kd_barang" class="form-control" onchange="isiHarga(this)">
+                                        <option disabled selected>-- Pilih Barang --</option>
                                         <?php
                                         $query = mysqli_query($koneksi, "SELECT * FROM barang");
                                         while ($b = mysqli_fetch_array($query)) {
-                                            echo "<option value='$b[kd_barang]'>$b[nm_barang]</option>";
+                                            echo "<option value='$b[kd_barang]' data-harga='$b[harga_barang]'>$b[nm_barang]</option>";
                                         }
                                         ?>
                                     </select>
                                 </td>
-                                <td><input type="number" name="harga" class="form-control" placeholder="-" readonly></td>
-                                <td><input type="number" name="jumlah" class="form-control" placeholder="Jumlah"></td>
+                                <td><input type="text" name="harga" class="form-control" placeholder="-" readonly></td>
+                                <td><input type="text" name="jumlah" class="form-control" placeholder="Jumlah" oninput="hitungTotal(this)"></td>
+                                <td><input type="text" name="total" class="form-control" placeholder="-" readonly></td>
                             </tr>
                         </tbody>
                     </table>
@@ -145,6 +147,20 @@ if (isset($_POST['tambah'])) {
                         let row = container.firstElementChild.cloneNode(true);
                         row.querySelectorAll('select').forEach(select => select.value = '');
                         container.appendChild(row);
+                    }
+
+                    function isiHarga(select) {
+                        let harga = parseInt(select.options[select.selectedIndex].dataset.harga);
+                        let row = select.closest('tr');
+                        row.querySelector('[name="harga"]').value = 'Rp ' + harga.toLocaleString('id-ID');
+                    }
+
+                    function hitungTotal(input){
+                        let row = input.closest('tr');
+                        let select = row.querySelector('select[name="kd_barang"]');
+                        let harga = parseInt(select.options[select.selectedIndex].dataset.harga || 0);
+                        let total = harga * parseInt(row.querySelector('[name="jumlah"]').value || 0);
+                        row.querySelector('[name="total"]').value = 'Rp ' + total.toLocaleString('id-ID');
                     }
                 </script>
 

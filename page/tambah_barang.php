@@ -28,10 +28,10 @@ $_SESSION["KODE"] = $hasilkode;
 if (isset($_POST['tambah'])) {
     $kd_barang = $_POST['kd_barang'];
     $nm_barang = $_POST['nm_barang'];
-    $hrg_barang = $_POST['hrg_barang'];
-    $ktg_barang = $_POST['ktg_barang'];
+    $harga_barang = $_POST['harga_barang'];
+    $kategori_barang = $_POST['kategori_barang'];
 
-    $insert = mysqli_query($koneksi, "INSERT INTO barang VALUES ('$kd_barang', '$nm_barang', '$hrg_barang', '$ktg_barang')");
+    $insert = mysqli_query($koneksi, "INSERT INTO barang VALUES ('$kd_barang', '$nm_barang', '$harga_barang', '$kategori_barang')");
 
     if ($insert) {
         echo '
@@ -80,20 +80,20 @@ if (isset($_POST['tambah'])) {
                     </div>
 
                     <div class="form-group">
-                        <label for="hrg_barang">Harga Barang</label>
+                        <label for="harga_barang">Harga Barang</label>
                         <input 
                             type="number" 
-                            name="hrg_barang" 
-                            id="hrg_barang" 
+                            name="harga_barang" 
+                            id="harga_barang" 
                             placeholder="Harga Barang" 
                             class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="ktg_barang">Kategori Barang</label>
+                        <label for="kategori_barang">Kategori Barang</label>
                         <select 
-                            name="ktg_barang" 
-                            id="ktg_barang" 
+                            name="kategori_barang" 
+                            id="kategori_barang" 
                             class="form-control">
                             <option disabled selected>--Pilih Kategori--</option>
                             <option value="Makanan">Makanan</option>
