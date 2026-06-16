@@ -118,9 +118,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="index.php?page=inventaris" class="nav-link <?php echo ($page == 'inventaris' || $page == 'edit_inventaris' || $page == 'tambah_inventaris') ? 'active' : '' ?>">
+                <a href="index.php?page=barang" class="nav-link <?php echo ($page == 'barang' || $page == 'edit_barang' || $page == 'tambah_barang') ? 'active' : '' ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inventaris</p>
+                  <p>Barang</p>
                 </a>
               </li>
               <li class="nav-item">
