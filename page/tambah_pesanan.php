@@ -108,7 +108,7 @@ if (isset($_POST['tambah'])) {
                                     </select>
                                 </td>
                                 <td><input type="text" name="harga" class="form-control" placeholder="-" readonly></td>
-                                <td><input type="text" name="jumlah" class="form-control" placeholder="Jumlah" oninput="hitungTotal(this)"></td>
+                                <td><input type="number" name="jumlah" class="form-control" placeholder="Jumlah" oninput="hitungTotal(this)"></td>
                                 <td><input type="text" name="total" class="form-control" placeholder="-" readonly></td>
                             </tr>
                         </tbody>
@@ -151,17 +151,16 @@ if (isset($_POST['tambah'])) {
                     }
 
                     function isiHarga(select) {
-                        let harga = parseInt(select.options[select.selectedIndex].dataset.harga);
+                        let harga = select.options[select.selectedIndex].dataset.harga;
                         let row = select.closest('tr');
-                        row.querySelector('[name="harga"]').value = 'Rp ' + harga.toLocaleString('id-ID');
+                        row.querySelector('[name="harga"]').value = harga;
                     }
 
                     function hitungTotal(input){
                         let row = input.closest('tr');
-                        let select = row.querySelector('select[name="kd_barang"]');
-                        let harga = parseInt(select.options[select.selectedIndex].dataset.harga || 0);
+                        let harga = row.querySelector('[name="harga"]').value || 0;
                         let total = harga * parseInt(row.querySelector('[name="jumlah"]').value || 0);
-                        row.querySelector('[name="total"]').value = 'Rp ' + total.toLocaleString('id-ID');
+                        row.querySelector('[name="total"]').value = total;
                     }
                 </script>
 
