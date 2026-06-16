@@ -124,9 +124,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index.php?page=guru" class="nav-link <?php echo ($page == 'guru' || $page == 'edit_guru' || $page == 'tambah_guru') ? 'active' : '' ?>">
+                <a href="index.php?page=pesanan" class="nav-link <?php echo ($page == 'pesanan' || $page == 'edit_pesanan' || $page == 'tambah_pesanan') ? 'active' : '' ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Guru</p>
+                  <p>Pesanan</p>
                 </a>
               </li>
               <li class="nav-item">
