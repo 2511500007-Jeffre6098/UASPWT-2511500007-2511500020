@@ -26,14 +26,15 @@ $_SESSION["KODE"] = $hasilkode;
 
 // Proses simpan
 if (isset($_POST['tambah'])) {
-    $no_pesanan = $_POST['no_pesanan'];
-    $waktu_pesanan = $_POST['waktu_pesanan'];
-    $username = $_POST['username'];
+    $no_pesanan = $hasilkode;
+    $waktu_pesanan = $waktu = date('Y-m-d H:i:s');
+    $username = $_SESSION['username'];
     $kd_barang = $_POST['kd_barang'];
     $jumlah = $_POST['jumlah'];
+    $total = $_POST['total'];
     $total_pesanan = $_POST['total_pesanan'];
 
-    $insert_pesanan = mysqli_query($koneksi, "INSERT INTO pesanan VALUES ('$no_pesanan', '$waktu_pesanan', '$username', '$total_pesanan')");
+    $insert_pesanan = mysqli_query($koneksi, "INSERT INTO pesanan VALUES ('$no_pesanan', '$waktu_pesanan', '$total_pesanan', '$username')");
 
     if (!$insert_pesanan) {
         echo "Gagal insert ke tabel pesanan: " . mysqli_error($koneksi);
@@ -41,8 +42,8 @@ if (isset($_POST['tambah'])) {
     }
 
     $allSuccess = true;
-    for ($i = 0; $i < count($mapel); $i++) {
-        $insertdetail = mysqli_query($koneksi, "INSERT INTO detail_pesanan (no_pesanan, kd_barang, jumlah) VALUES ('$no_pesanan', '{$kd_barang[$i]}', '{$jumlah[$i]}')");
+    for ($i = 0; $i < count($kd_barang); $i++) {
+        $insertdetail = mysqli_query($koneksi, "INSERT INTO detail_pesanan (no_pesanan, kd_barang, jumlah, total) VALUES ('$no_pesanan', '{$kd_barang[$i]}', '{$jumlah[$i]}', '{$total[$i]}')");
         if (!$insertdetail) {
             $allSuccess = false;
             echo "Gagal insert detail ke-{$i}: " . mysqli_error($koneksi);
@@ -97,7 +98,7 @@ if (isset($_POST['tambah'])) {
                         <tbody id="detail-pesanan">
                             <tr>
                                 <td>
-                                    <select name="kd_barang" class="form-control" onchange="isiHarga(this)">
+                                    <select name="kd_barang[]" id="kd_barang[]" class="form-control" onchange="isiHarga(this)">
                                         <option disabled selected value=''>-- Pilih Barang --</option>
                                         <?php
                                         $query = mysqli_query($koneksi, "SELECT * FROM barang");
@@ -107,33 +108,16 @@ if (isset($_POST['tambah'])) {
                                         ?>
                                     </select>
                                 </td>
-                                <td><input type="text" name="harga" class="form-control" placeholder="-" readonly></td>
-                                <td><input type="number" name="jumlah" class="form-control" placeholder="Jumlah" oninput="hitungTotal(this)"></td>
-                                <td><input type="text" name="total" class="form-control" placeholder="-" readonly></td>
+                                <td><input type="text" name="harga[]"  id="harga[]" class="form-control" placeholder="-" readonly></td>
+                                <td><input type="number" name="jumlah[]" id="jumlah[]" class="form-control" placeholder="Jumlah" oninput="hitungTotal(this)"></td>
+                                <td><input type="text" name="total[]" id="total[]" class="form-control" placeholder="-" readonly></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right"><strong>Total Pesanan:</strong></td>
+                                <td><input type="text" name="total_pesanan" id="total_pesanan" class="form-control" placeholder="-" readonly></td>
                             </tr>
                         </tbody>
                     </table>
-
-                    <!-- <div no="detail-pesanan">
-                        <div class="row mb-2">
-
-                            <div class="col-md-3">
-                                <select name="barang" class="form-control">
-                                    <option disabled selected value="">-- Pilih Barang --</option>
-                                        <?php
-                                        $query = mysqli_query($koneksi, "SELECT * FROM barang");
-                                        while ($b = mysqli_fetch_array($query)) {
-                                            echo "<option value='$b[kd_barang]'>$b[nm_barang]</option>";
-                                        }
-                                        ?>
-                                </select>
-                            </div>
-
-                            <div class="col-md-3">
-                                <input type="number" name="jumlah" class="form-control" placeholder="Jumlah">
-                            </div>
-                        </div>
-                    </div> -->
 
                     <button type="button" class="btn btn-info" onclick="tambahBaris()">+ Tambah Barang</button>
                     <br><br>
@@ -147,20 +131,31 @@ if (isset($_POST['tambah'])) {
                         let row = container.firstElementChild.cloneNode(true);
                         row.querySelectorAll('select').forEach(select => select.value = '');
                         row.querySelectorAll('input').forEach(input => input.value = '');
-                        container.appendChild(row);
+                        let rowTotalPesanan = container.lastElementChild;
+                        container.insertBefore(row, rowTotalPesanan);
                     }
 
                     function isiHarga(select) {
                         let harga = select.options[select.selectedIndex].dataset.harga;
                         let row = select.closest('tr');
-                        row.querySelector('[name="harga"]').value = harga;
+                        row.querySelector('[name="harga[]"]').value = harga;
                     }
 
                     function hitungTotal(input){
                         let row = input.closest('tr');
-                        let harga = row.querySelector('[name="harga"]').value || 0;
-                        let total = harga * parseInt(row.querySelector('[name="jumlah"]').value || 0);
-                        row.querySelector('[name="total"]').value = total;
+                        let harga = row.querySelector('[name="harga[]"]').value || 0;
+                        let total = harga * row.querySelector('[name="jumlah[]"]').value || 0;
+                        row.querySelector('[name="total[]"]').value = total;
+                        hitungTotalPesanan();
+                    }
+
+                    function hitungTotalPesanan(){
+                        let totalPesanan = 0;
+                        document.querySelectorAll('[name="total[]"]').forEach(function(input){
+                            let total = parseInt(input.value) || 0;
+                            totalPesanan += total;
+                        });
+                        document.getElementById('total_pesanan').value = totalPesanan;
                     }
                 </script>
 

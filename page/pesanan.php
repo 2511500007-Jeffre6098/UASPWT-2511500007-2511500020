@@ -59,14 +59,14 @@ if (isset($_GET['action'])) {
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $result['no_pesanan']; ?></td>
-                                    <td><?= $result['nm_penjual']; ?></td>
+                                    <td><?= $result['username']; ?></td>
                                     <td><?= $result['waktu_pesanan']; ?></td>
                                     <td><?= $result['total_pesanan']; ?></td>
                                     <td>
                                         <?php
                                             $det = mysqli_query($koneksi, "SELECT * FROM detail_pesanan JOIN barang ON detail_pesanan.kd_barang = barang.kd_barang WHERE detail_pesanan.no_pesanan = '{$result['no_pesanan']}'");
                                             while ($d = mysqli_fetch_assoc($det)) {
-                                                echo "{$d['nm_barang']} - {$d['harga']} - {$d['jumlah']} <br>";
+                                                echo "{$d['nm_barang']} - {$d['harga_barang']} - {$d['jumlah']} - {$d['total']}<br>";
                                             }
                                         ?>
                                     </td>
