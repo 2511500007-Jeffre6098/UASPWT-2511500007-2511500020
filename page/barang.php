@@ -43,6 +43,7 @@ if (isset($_GET['action'])) {
                             <th>Nama Barang</th>
                             <th>Harga</th>
                             <th>Kategori Barang</th>
+                            <th>Stok</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -61,6 +62,7 @@ if (isset($_GET['action'])) {
                                 <td><?= $result['nm_barang']; ?></td>
                                 <td><?= "Rp " . number_format($result['harga_barang'], 0, ',', '.'); ?></td>
                                 <td><?= $result['kategori_barang']; ?></td>
+                                <td><?= $result['stok']; ?></td>
                                 <td>
                                     <a href="index.php?page=barang&action=hapus&kd=<?= $result['kd_barang']; ?>">
                                         <span class="badge badge-danger">Hapus</span>

@@ -13,7 +13,9 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] == "hapus") {
         $no = $_GET['no'];
         mysqli_query($koneksi, "DELETE FROM detail_pesanan WHERE no_pesanan = '$no'");
+        mysqli_query($koneksi, "DELETE FROM pembayaran WHERE no_pesanan = '$no'");
         $query = mysqli_query($koneksi, "DELETE FROM pesanan WHERE no_pesanan = '$no'");
+
 
         if ($query) {
             echo '
@@ -37,15 +39,15 @@ if (isset($_GET['action'])) {
                     </a>
                     <br><br>
 
-                    <table class="table table-striped">
-                        <thead>
+                    <table class="table table-sm table-bordered">
+                        <thead class="text-center">
                             <tr>
                                 <th>No.</th>
                                 <th>No. Pesanan</th>
                                 <th>Nama Penjual</th>
                                 <th>Waktu Pesanan</th>
                                 <th>Total Pesanan</th>
-                                <th>Detail pesanan</th>
+                                <th>Detail pesanan</th>                                  
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -63,13 +65,34 @@ if (isset($_GET['action'])) {
                                     <td><?= $result['waktu_pesanan']; ?></td>
                                     <td><?= $result['total_pesanan']; ?></td>
                                     <td>
-                                        <?php
-                                            $det = mysqli_query($koneksi, "SELECT * FROM detail_pesanan JOIN barang ON detail_pesanan.kd_barang = barang.kd_barang WHERE detail_pesanan.no_pesanan = '{$result['no_pesanan']}'");
-                                            while ($d = mysqli_fetch_assoc($det)) {
-                                                echo "{$d['nm_barang']} - {$d['harga_barang']} - {$d['jumlah']} - {$d['total']}<br>";
-                                            }
-                                        ?>
+                                        <table class="table table-sm table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama Barang</th>
+                                                    <th>Harga</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $det = mysqli_query($koneksi,"SELECT * FROM detail_pesanan JOIN barang ON detail_pesanan.kd_barang = barang.kd_barang
+                                                    WHERE detail_pesanan.no_pesanan = '{$result['no_pesanan']}'"
+                                                );
+
+                                                while ($d = mysqli_fetch_assoc($det)) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $d['nm_barang']; ?></td>
+                                                        <td><?= number_format($d['harga_barang']); ?></td>
+                                                        <td><?= $d['jumlah']; ?></td>
+                                                        <td><?= number_format($d['total']); ?></td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
                                     </td>
+                                                                        </td>
                                     <td>
                                         <a href="index.php?page=pesanan&action=hapus&no=<?= $result['no_pesanan']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?')">
                                             <span class="badge badge-danger">Hapus</span>

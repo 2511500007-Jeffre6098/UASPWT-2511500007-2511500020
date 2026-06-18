@@ -33,8 +33,11 @@ if (isset($_POST['tambah'])) {
     $jumlah = $_POST['jumlah'];
     $total = $_POST['total'];
     $total_pesanan = $_POST['total_pesanan'];
+    $nominal = $_POST['bayar'];
+    $kembalian = $_POST['kembalian'];
 
     $insert_pesanan = mysqli_query($koneksi, "INSERT INTO pesanan VALUES ('$no_pesanan', '$waktu_pesanan', '$total_pesanan', '$username')");
+    $insert_pembayaran = mysqli_query($koneksi, "INSERT INTO pembayaran VALUES ('$no_pesanan', '$nominal', '$kembalian')");
 
     if (!$insert_pesanan) {
         echo "Gagal insert ke tabel pesanan: " . mysqli_error($koneksi);
@@ -51,13 +54,18 @@ if (isset($_POST['tambah'])) {
     }
 
     if ($allSuccess) {
-        echo '
-        <div class="alert alert-info alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">X</button>
-            <h5><i class="icon fas fa-info"></i> Info</h5>
-            <h4>Berhasil Disimpan</h4>
-        </div>';
-        echo '<meta http-equiv="refresh" content="1;url=index.php?page=pesanan">';
+        echo "
+            <script>
+                window.location='page/cetak_struk.php?no=$no_pesanan';
+            </script>
+            ";
+        // echo '
+        // <div class="alert alert-info alert-dismissible">
+        //     <button type="button" class="close" data-dismiss="alert">X</button>
+        //     <h5><i class="icon fas fa-info"></i> Info</h5>
+        //     <h4>Berhasil Disimpan</h4>
+        // </div>';
+        // echo '<meta http-equiv="refresh" content="1;url=index.php?page=pesanan">';
         //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     } else {
         echo '
@@ -115,13 +123,27 @@ if (isset($_POST['tambah'])) {
                             <tr>
                                 <td colspan="3" class="text-right"><strong>Total Pesanan:</strong></td>
                                 <td><input type="text" name="total_pesanan" id="total_pesanan" class="form-control" placeholder="-" readonly></td>
-                            </tr>
                         </tbody>
                     </table>
+                    <br>
+                    <table>
+                    </tr>
+                            <tr>
+                                <td colspan="3" class="text-right"><strong>Nominal Bayar:</strong>
+                            </td>
+                                <td><input type="text" name="bayar" id="bayar" class="form-control" placeholder="Rupiah"  oninput="hitungKembalian()">
+                            </td>
+                            <td colspan="3" class="text-right"><strong>Kembalian:</strong>
+                            </td>
+                                <td><input type="text" name="kembalian" id="kembalian" class="form-control" placeholder="-" readonly>
+                            </td>
+                          
+                            </table>
+                            <br>
 
                     <button type="button" class="btn btn-info" onclick="tambahBaris()">+ Tambah Barang</button>
                     <br><br>
-                    <input type="submit" class="btn btn-primary" name="tambah" value="Simpan">
+                    <button type="submit" class="btn btn-primary" name="tambah" value="Simpan">Simpan dan Cetak Struk</button>
 
                 </form>
 
@@ -156,6 +178,14 @@ if (isset($_POST['tambah'])) {
                             totalPesanan += total;
                         });
                         document.getElementById('total_pesanan').value = totalPesanan;
+                    }
+
+                    function hitungKembalian(){
+                        let bayar = parseInt(document.getElementById('bayar').value) || 0;
+                        let totalPesanan = parseInt(document.getElementById('total_pesanan').value) || 0;
+                        let kembalian = bayar - totalPesanan;
+                        document.getElementById('kembalian').value = kembalian;
+                        // Simpan kembalian ke input tersembunyi atau tampilkan di UI sesuai kebutuhan
                     }
                 </script>
 

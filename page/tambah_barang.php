@@ -103,6 +103,16 @@ if (isset($_POST['tambah'])) {
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="nm_barang">Nama Barang</label>
+                        <input 
+                            type="text" 
+                            name="nm_barang" 
+                            id="nm_barang"
+                            placeholder="Nama barang" 
+                            class="form-control">
+                    </div>
+
                     <div class="card-footer">
                         <input 
                             type="submit" 
