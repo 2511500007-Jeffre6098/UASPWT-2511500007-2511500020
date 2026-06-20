@@ -102,10 +102,6 @@ if (isset($_GET['action'])) {
                             <?php } ?>
                         </tbody>
                     </table>
-
-                    <a href="index.php?page=cetak_pesanan" class="btn btn-primary btn-sm">
-                        Cetak Struk
-                    </a>
             </div>
         </div>
     </div>

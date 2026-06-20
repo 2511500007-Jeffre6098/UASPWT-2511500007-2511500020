@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Daftar Barang</h1>
+                <h1 class="m-0 text-dark">Histori Pembayaran</h1>
             </div>
         </div>
     </div>
@@ -11,16 +11,16 @@
 <?php
 if (isset($_GET['action'])) {
     if ($_GET['action'] == "hapus") {
-        $kd = $_GET['kd'];
+        $no = $_GET['no'];
 
-        $query = mysqli_query($koneksi, "DELETE FROM barang WHERE kd_barang = '$kd'");
+        $query = mysqli_query($koneksi, "DELETE FROM pembayaran WHERE no_pembayaran = '$no'");
 
         if ($query) {
             echo '
             <div class="alert alert-warning alert-dismissible">
                 Berhasil Di Hapus
             </div>';
-            echo '<meta http-equiv="refresh" content="1;url=index.php?page=barang">';
+            echo '<meta http-equiv="refresh" content="1;url=index.php?page=pembayaran">';
         }
     }
 }
@@ -31,19 +31,14 @@ if (isset($_GET['action'])) {
         <div class="card">
             <div class="card-body">
 
-                <a href="index.php?page=tambah_barang" class="btn btn-primary btn-sm">
-                    Tambah barang
-                </a>
-
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>Kode Barang</th>
-                            <th>Nama Barang</th>
-                            <th>Harga</th>
-                            <th>Kategori Barang</th>
-                            <th>Stok</th>
+                            <th>No. pembayaran</th>
+                            <th>No. pesanan</th>
+                            <th>Nominal</th>
+                            <th>Kembalian</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -51,25 +46,20 @@ if (isset($_GET['action'])) {
                     <tbody>
                         <?php
                         $no = 0;
-                        $query = mysqli_query($koneksi, "SELECT * FROM barang");
+                        $query = mysqli_query($koneksi, "SELECT * FROM pembayaran join pesanan on pesanan.no_pesanan = pembayaran.no_pesanan");
 
                         while ($result = mysqli_fetch_array($query)) {
                             $no++;
                         ?>
                             <tr>
                                 <td><?= $no; ?></td>
-                                <td><?= $result['kd_barang']; ?></td>
-                                <td><?= $result['nm_barang']; ?></td>
-                                <td><?= "Rp " . number_format($result['harga_barang'], 0, ',', '.'); ?></td>
-                                <td><?= $result['kategori_barang']; ?></td>
-                                <td><?= $result['stok_barang']; ?></td>
+                                <td><?= $result['no_bayar']; ?></td>
+                                <td><?= $result['no_pesanan']; ?></td>
+                                <td><?= "Rp " . number_format($result['nominal'], 0, ',', '.'); ?></td>
+                                <td><?= "Rp " . number_format($result['kembalian'], 0, ',', '.'); ?></td>
                                 <td>
-                                    <a href="index.php?page=barang&action=hapus&kd=<?= $result['kd_barang']; ?>">
+                                    <a href="index.php?page=pembayaran&action=hapus&no=<?= $result['no_pembayaran']; ?>">
                                         <span class="badge badge-danger">Hapus</span>
-                                    </a>
-
-                                    <a href="index.php?page=edit_barang&kd=<?= $result['kd_barang']; ?>">
-                                        <span class="badge badge-warning">Edit</span>
                                     </a>
                                 </td>
                             </tr>

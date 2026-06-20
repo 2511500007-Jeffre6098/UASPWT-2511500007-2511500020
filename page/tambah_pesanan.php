@@ -18,8 +18,10 @@ if ($datakode) {
     $kode = (int) $nilaikode;
     $kode = $kode + 1;
     $hasilkode = "P" . str_pad($kode, 3, "0", STR_PAD_LEFT);
+    $hasilkodePembayaran = "PB" . str_pad($kode, 3, "0", STR_PAD_LEFT);
 } else {
     $hasilkode = "P001";
+    $hasilkodePembayaran = "P001";
 }
 
 $_SESSION["KODE"] = $hasilkode;
@@ -33,13 +35,14 @@ if (isset($_POST['tambah'])) {
     $jumlah = $_POST['jumlah'];
     $total = $_POST['total'];
     $total_pesanan = $_POST['total_pesanan'];
+    $no_pembayaran = $hasilkodePembayaran;
     $nominal = $_POST['bayar'];
     $kembalian = $_POST['kembalian'];
 
     $insert_pesanan = mysqli_query($koneksi, "INSERT INTO pesanan VALUES ('$no_pesanan', '$waktu_pesanan', '$total_pesanan', '$username')");
-    $insert_pembayaran = mysqli_query($koneksi, "INSERT INTO pembayaran VALUES ('$no_pesanan', '$nominal', '$kembalian')");
+    $insert_pembayaran = mysqli_query($koneksi, "INSERT INTO pembayaran VALUES ('$no_pembayaran', '$no_pesanan', '$nominal', '$kembalian')");
 
-    if (!$insert_pesanan) {
+    if (!$insert_pesanan || !$insert_pembayaran) {
         echo "Gagal insert ke tabel pesanan: " . mysqli_error($koneksi);
         die;
     }
@@ -59,13 +62,13 @@ if (isset($_POST['tambah'])) {
                 window.location='page/cetak_struk.php?no=$no_pesanan';
             </script>
             ";
-        // echo '
-        // <div class="alert alert-info alert-dismissible">
-        //     <button type="button" class="close" data-dismiss="alert">X</button>
-        //     <h5><i class="icon fas fa-info"></i> Info</h5>
-        //     <h4>Berhasil Disimpan</h4>
-        // </div>';
-        // echo '<meta http-equiv="refresh" content="1;url=index.php?page=pesanan">';
+        echo '
+        <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">X</button>
+            <h5><i class="icon fas fa-info"></i> Info</h5>
+            <h4>Berhasil Disimpan</h4>
+        </div>';
+        echo '<meta http-equiv="refresh" content="1;url=index.php?page=pesanan">';
         //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     } else {
         echo '
@@ -143,7 +146,7 @@ if (isset($_POST['tambah'])) {
 
                     <button type="button" class="btn btn-info" onclick="tambahBaris()">+ Tambah Barang</button>
                     <br><br>
-                    <button type="submit" class="btn btn-primary" name="tambah" value="Simpan">Simpan dan Cetak Struk</button>
+                    <button type="submit" class="btn btn-primary" name="tambah" value="Simpan" >Simpan dan Cetak Struk</button>
 
                 </form>
 

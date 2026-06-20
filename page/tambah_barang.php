@@ -30,8 +30,9 @@ if (isset($_POST['tambah'])) {
     $nm_barang = $_POST['nm_barang'];
     $harga_barang = $_POST['harga_barang'];
     $kategori_barang = $_POST['kategori_barang'];
+    $stok_barang = $_POST['stok_barang'];
 
-    $insert = mysqli_query($koneksi, "INSERT INTO barang VALUES ('$kd_barang', '$nm_barang', '$harga_barang', '$kategori_barang')");
+    $insert = mysqli_query($koneksi, "INSERT INTO barang VALUES ('$kd_barang', '$nm_barang', '$harga_barang', '$kategori_barang', '$stok_barang')");
 
     if ($insert) {
         echo '
@@ -42,12 +43,14 @@ if (isset($_POST['tambah'])) {
         </div>';
         echo '<meta http-equiv="refresh" content="1;url=index.php?page=barang">';
     } else {
-        echo '
-        <div class="alert alert-warning alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">X</button>
-            <h5><i class="icon fas fa-info"></i> Info</h5>
-            <h4>Gagal Disimpan</h4>
-        </div>';
+        // echo '
+        // <div class="alert alert-warning alert-dismissible">
+        //     <button type="button" class="close" data-dismiss="alert">X</button>
+        //     <h5><i class="icon fas fa-info"></i> Info</h5>
+        //     <h4>Gagal Disimpan</h4>
+        // </div>';
+            die("Error MySQL: " . mysqli_error($koneksi));
+
     }
 }
 ?>
@@ -85,7 +88,7 @@ if (isset($_POST['tambah'])) {
                             type="number" 
                             name="harga_barang" 
                             id="harga_barang" 
-                            placeholder="Harga Barang" 
+                            placeholder="Harga barang" 
                             class="form-control">
                     </div>
 
@@ -104,12 +107,12 @@ if (isset($_POST['tambah'])) {
                     </div>
 
                     <div class="form-group">
-                        <label for="nm_barang">Nama Barang</label>
+                        <label for="stok_barang">Stok Barang</label>
                         <input 
-                            type="text" 
-                            name="nm_barang" 
-                            id="nm_barang"
-                            placeholder="Nama barang" 
+                            type="number" 
+                            name="stok_barang" 
+                            id="stok_barang"
+                            placeholder="Stok barang" 
                             class="form-control">
                     </div>
 

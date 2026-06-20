@@ -1,23 +1,13 @@
 <?php
+    require_once '../config/koneksi.php';
+?>
+
+<?php
 $no = $_GET['no'];
+$pesanan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM pesanan WHERE no_pesanan='$no'"));
+$pembayaran = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM pembayaran WHERE no_pesanan='$no'"));
 
-$pesanan = mysqli_fetch_assoc(
-    mysqli_query($koneksi,
-    "SELECT * FROM pesanan WHERE no_pesanan='$no'")
-);
-
-$pembayaran = mysqli_fetch_assoc(
-    mysqli_query($koneksi,
-    "SELECT * FROM pembayaran WHERE no_pesanan='$no'")
-);
-
-$detail = mysqli_query(
-    $koneksi,
-    "SELECT *
-    FROM detail_pesanan
-    JOIN barang ON detail_pesanan.kd_barang = barang.kd_barang
-    WHERE detail_pesanan.no_pesanan='$no'"
-);
+$detail = mysqli_query($koneksi, "SELECT *FROM detail_pesanan JOIN barang ON detail_pesanan.kd_barang = barang.kd_barang WHERE detail_pesanan.no_pesanan='$no'");
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +24,8 @@ $detail = mysqli_query(
         .struk{
             width:80mm;
             margin:auto;
+            padding:5px;;
+            border:1px solid;
         }
 
         table{
@@ -50,7 +42,12 @@ $detail = mysqli_query(
             border-top:1px dashed black;
         }
 
-        @media print{
+        @page {
+            size: 80mm auto;
+            margin: 0;
+        }
+
+        @media print{    
             button{
                 display:none;
             }
@@ -63,16 +60,21 @@ $detail = mysqli_query(
 <div class="struk">
 
     <center>
-        <h3>TOKO ABC</h3>
-        Jl. Contoh No.1
+        <h3>TOKO JJ</h3>
+        Jl. Kenanga
     </center>
 
     <hr>
 
     <table>
         <tr>
-            <td>No</td>
+            <td>No. Pesan</td>
             <td>: <?= $pesanan['no_pesanan'] ?></td>
+        </tr>
+
+        <tr>
+            <td>No. Bayar</td>
+            <td>: <?= $pembayaran['no_bayar'] ?></td>
         </tr>
 
         <tr>
@@ -147,9 +149,9 @@ window.onload = function(){
     window.print();
 }
 
-window.onafterprint = function(){
-    window.location.href='index.php?page=pesanan';
-}
+// window.onafterprint = function(){
+//     window.location.href='index.php?page=pesanan.php';
+// }
 </script>
 
 </body>
