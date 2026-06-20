@@ -43,14 +43,12 @@ if (isset($_POST['tambah'])) {
         </div>';
         echo '<meta http-equiv="refresh" content="1;url=index.php?page=barang">';
     } else {
-        // echo '
-        // <div class="alert alert-warning alert-dismissible">
-        //     <button type="button" class="close" data-dismiss="alert">X</button>
-        //     <h5><i class="icon fas fa-info"></i> Info</h5>
-        //     <h4>Gagal Disimpan</h4>
-        // </div>';
-            die("Error MySQL: " . mysqli_error($koneksi));
-
+        echo '
+        <div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">X</button>
+            <h5><i class="icon fas fa-info"></i> Info</h5>
+            <h4>Gagal Disimpan</h4>
+        </div>';
     }
 }
 ?>

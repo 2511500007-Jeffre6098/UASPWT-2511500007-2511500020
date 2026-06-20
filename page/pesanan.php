@@ -63,7 +63,7 @@ if (isset($_GET['action'])) {
                                     <td><?= $result['no_pesanan']; ?></td>
                                     <td><?= $result['username']; ?></td>
                                     <td><?= $result['waktu_pesanan']; ?></td>
-                                    <td><?= $result['total_pesanan']; ?></td>
+                                    <td><?= "Rp " . number_format($result['total_pesanan'], 0, ',', '.'); ?></td>
                                     <td>
                                         <table class="table table-sm table-bordered">
                                             <thead>
@@ -84,9 +84,9 @@ if (isset($_GET['action'])) {
                                                 ?>
                                                     <tr>
                                                         <td><?= $d['nm_barang']; ?></td>
-                                                        <td><?= number_format($d['harga_barang']); ?></td>
-                                                        <td><?= $d['jumlah']; ?></td>
-                                                        <td><?= number_format($d['total']); ?></td>
+                                                        <td><?= "Rp " . number_format($d['harga_barang'], 0, ',', '.'); ?></td>
+                                                        <td class="text-center"><?= $d['jumlah']; ?></td>
+                                                        <td><?= "Rp " . number_format($d['total'], 0, ',', '.'); ?></td>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>

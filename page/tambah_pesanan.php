@@ -53,6 +53,8 @@ if (isset($_POST['tambah'])) {
         if (!$insertdetail) {
             $allSuccess = false;
             echo "Gagal insert detail ke-{$i}: " . mysqli_error($koneksi);
+        } else {
+            mysqli_query($koneksi, "UPDATE barang SET stok_barang = stok_barang - '{$jumlah[$i]}' WHERE kd_barang = '{$kd_barang[$i]}'");
         }
     }
 

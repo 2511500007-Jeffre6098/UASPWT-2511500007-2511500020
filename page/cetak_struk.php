@@ -149,9 +149,9 @@ window.onload = function(){
     window.print();
 }
 
-// window.onafterprint = function(){
-//     window.location.href='index.php?page=pesanan.php';
-// }
+window.onafterprint = function(){
+    window.location.href='../index.php?page=pesanan';
+ }
 </script>
 
 </body>
