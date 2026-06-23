@@ -58,7 +58,7 @@ if (isset($_GET['action'])) {
                                 <td><?= "Rp " . number_format($result['nominal'], 0, ',', '.'); ?></td>
                                 <td><?= "Rp " . number_format($result['kembalian'], 0, ',', '.'); ?></td>
                                 <td>
-                                    <a href="index.php?page=pembayaran&action=hapus&no=<?= $result['no_pembayaran']; ?>">
+                                    <a href="index.php?page=pembayaran&action=hapus&no=<?= $result['no_bayar']; ?>">
                                         <span class="badge badge-danger">Hapus</span>
                                     </a>
                                 </td>

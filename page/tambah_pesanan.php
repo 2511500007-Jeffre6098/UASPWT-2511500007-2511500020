@@ -105,6 +105,7 @@ if (isset($_POST['tambah'])) {
                                 <th>Harga</th>
                                 <th>Jumlah</th>
                                 <th>Total</th>
+                                <th></th>
                             </tr>
                         </thead>
 
@@ -124,11 +125,13 @@ if (isset($_POST['tambah'])) {
                                 <td><input type="text" name="harga[]"  id="harga[]" class="form-control" placeholder="-" readonly></td>
                                 <td><input type="number" name="jumlah[]" id="jumlah[]" class="form-control" placeholder="Jumlah" oninput="hitungTotal(this)"></td>
                                 <td><input type="text" name="total[]" id="total[]" class="form-control" placeholder="-" readonly></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="text-right"><strong>Total Pesanan:</strong></td>
                                 <td><input type="text" name="total_pesanan" id="total_pesanan" class="form-control" placeholder="-" readonly></td>
-                        </tbody>
+                            </tr>
+                            </tbody>
                     </table>
                     <br>
                     <table>
@@ -144,7 +147,7 @@ if (isset($_POST['tambah'])) {
                             </td>
                           
                             </table>
-                            <br>
+                            <br> 
 
                     <button type="button" class="btn btn-info" onclick="tambahBaris()">+ Tambah Barang</button>
                     <br><br>
@@ -160,6 +163,12 @@ if (isset($_POST['tambah'])) {
                         row.querySelectorAll('input').forEach(input => input.value = '');
                         let rowTotalPesanan = container.lastElementChild;
                         container.insertBefore(row, rowTotalPesanan);
+                        row.lastElementChild.innerHTML =
+                            '<button type="button" class="btn btn-danger" onclick="hapusBaris(this)">X</button>';
+                    }
+
+                    function hapusBaris(btn) {
+                        btn.closest('tr').remove();
                     }
 
                     function isiHarga(select) {
@@ -192,6 +201,14 @@ if (isset($_POST['tambah'])) {
                         document.getElementById('kembalian').value = kembalian;
                         // Simpan kembalian ke input tersembunyi atau tampilkan di UI sesuai kebutuhan
                     }
+                </script>
+
+                 
+                    
+                        
+                    
+
+                    
                 </script>
 
             </div>
