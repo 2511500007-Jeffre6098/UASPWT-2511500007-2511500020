@@ -27,12 +27,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <style>
 .main-sidebar {
-    background-color: #2b0a3d !important;
+    background-color: #230434 !important;
    
 }
 .main-sidebar,
 .main-sidebar::after {
-    background-color: #2b0a3d !important;
+    background-color: #230434 !important;
 }
 .brand-link {
     background-color: #673eb4 !important;
@@ -40,6 +40,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .nav-sidebar .nav-link.active {
     background-color: #8b68cc !important;
+    color: white !important;
+}
+
+.nav-sidebar .nav-link-title.active {
+    background-color: #7a5cb3 !important;
     color: white !important;
 }
 
@@ -89,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     bottom: 0;
     width: 250px;
     height: 57px;
-    background: #2b0a3d;
+    background: #230434;
 }
 .btn-primary {
     background-color: #673eb4 !important;
@@ -218,7 +223,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
-                  <a href="#" class="nav-link active">
+                  <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                       Master
@@ -235,7 +240,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </ul>
                 </li>
                 <li class="nav-item menu-open">
-                  <a href="" class="nav-link active">
+                  <a href="" class="nav-link">
                     <i class="fas fa-wallet nav-icon"></i>
                     <p>
                       Transaksi
