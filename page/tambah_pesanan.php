@@ -122,7 +122,7 @@ if (isset($_POST['tambah'])) {
                                     </select>
                                 </td>
                                 <td><input type="text" name="harga[]"  id="harga[]" class="form-control" placeholder="-" readonly></td>
-                                <td><input type="number" name="jumlah[]" id="jumlah[]" class="form-control" placeholder="Jumlah" oninput="hitungTotal(this)"></td>
+                                <td><input type="number" name="jumlah[]" min="0" id="jumlah[]" class="form-control" placeholder="Jumlah" oninput="hitungTotal(this)"></td>
                                 <td><input type="text" name="total[]" id="total[]" class="form-control" placeholder="-" readonly></td>
                             </tr>
                             <tr>
@@ -136,7 +136,7 @@ if (isset($_POST['tambah'])) {
                             <tr>
                                 <td colspan="3" class="text-right"><strong>Nominal Bayar:</strong>
                             </td>
-                                <td><input type="text" name="bayar" id="bayar" class="form-control" placeholder="Rupiah"  oninput="hitungKembalian()">
+                                <td><input type="number" min="0" name="bayar" id="bayar" class="form-control" placeholder="Rupiah"  oninput="hitungKembalian()">
                             </td>
                             <td colspan="3" class="text-right"><strong>Kembalian:</strong>
                             </td>

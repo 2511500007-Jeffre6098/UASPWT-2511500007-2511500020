@@ -92,7 +92,7 @@ if (isset($_GET['action'])) {
                                             </tbody>
                                         </table>
                                     </td>
-                                                                        </td>
+                                </td>
                                     <td>
                                         <a href="index.php?page=pesanan&action=hapus&no=<?= $result['no_pesanan']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?')">
                                             <span class="badge badge-danger">Hapus</span>
