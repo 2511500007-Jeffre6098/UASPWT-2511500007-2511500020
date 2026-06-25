@@ -60,7 +60,7 @@ $detail = mysqli_query($koneksi, "SELECT *FROM detail_pesanan JOIN barang ON det
 <div class="struk">
 
     <center>
-        <h3>TOKO JJ</h3>
+        <h3>TOKO AAA</h3>
         Jl. Kenanga
     </center>
 
