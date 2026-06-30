@@ -38,7 +38,7 @@ if (isset($_GET['action'])) {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>NO</th>
+                            <th>No</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
                             <th>Harga</th>

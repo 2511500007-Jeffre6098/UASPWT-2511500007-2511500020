@@ -7,7 +7,7 @@ $no = $_GET['no'];
 $pesanan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM pesanan WHERE no_pesanan='$no'"));
 $pembayaran = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM pembayaran WHERE no_pesanan='$no'"));
 
-$detail = mysqli_query($koneksi, "SELECT *FROM detail_pesanan JOIN barang ON detail_pesanan.kd_barang = barang.kd_barang WHERE detail_pesanan.no_pesanan='$no'");
+$detail = mysqli_query($koneksi, "SELECT * FROM detail_pesanan JOIN barang ON detail_pesanan.kd_barang = barang.kd_barang WHERE detail_pesanan.no_pesanan='$no'");
 ?>
 
 <!DOCTYPE html>

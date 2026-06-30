@@ -134,21 +134,17 @@ if (isset($_POST['tambah'])) {
                             </tbody>
                     </table>
                     <br>
-                    <table>
-                    </tr>
-                            <tr>
-                                <td colspan="3" class="text-right"><strong>Nominal Bayar:</strong>
-                            </td>
-                                <td><input type="number" min="0" name="bayar" id="bayar" class="form-control" placeholder="Rupiah"  oninput="hitungKembalian()">
-                            </td>
-                            <td colspan="3" class="text-right"><strong>Kembalian:</strong>
-                            </td>
-                                <td><input type="text" name="kembalian" id="kembalian" class="form-control" placeholder="-" readonly>
-                            </td>
-                          
-                            </table>
-                            <br> 
-
+                    <table border='1'>
+                        <tbody>
+                        <tr>
+                            <td class="text-right"><strong>Nominal Bayar:</strong></td>
+                            <td><input type="number" min="0" name="bayar" id="bayar" class="form-control" placeholder="Rupiah"  oninput="hitungKembalian()"></td>
+                            <td class="text-right"><strong>Kembalian:</strong></td>
+                            <td><input type="text" name="kembalian" id="kembalian" class="form-control" placeholder="-" readonly></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br> 
                     <button type="button" class="btn btn-info" onclick="tambahBaris()">+ Tambah Barang</button>
                     <br><br>
                     <button type="submit" class="btn btn-primary" name="tambah" value="Simpan" >Simpan dan Cetak Struk</button>

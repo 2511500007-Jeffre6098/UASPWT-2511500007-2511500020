@@ -3,8 +3,6 @@ session_start();
 require_once("config/koneksi.php");
 if (isset($_SESSION['username'])) {
   $page = $_GET['page'] ?? '';
-
-
 ?>
   <!DOCTYPE html>
   <!--
@@ -148,7 +146,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-
             <a href="index.php?page=dashboard" class="nav-link">Home</a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
@@ -179,8 +176,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </form>
             </div>
           </li>
-
-
         </ul>
       </nav>
       <!-- /.navbar -->
