@@ -198,15 +198,6 @@ if (isset($_POST['tambah'])) {
                         // Simpan kembalian ke input tersembunyi atau tampilkan di UI sesuai kebutuhan
                     }
                 </script>
-
-                 
-                    
-                        
-                    
-
-                    
-                </script>
-
             </div>
         </div>
     </div>
